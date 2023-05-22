@@ -25,9 +25,6 @@ import org.openqa.selenium.Keys;
  */
 public class SeleniumTest1 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws IOException, InterruptedException {
 
         //test_1NavbarProductos();
@@ -37,10 +34,216 @@ public class SeleniumTest1 {
         //test_inputNegativos();
         //test_btnEditar();
         //test_btnEliminar();
-        test_1NavbarEmpleado();
+        
+        
+        //test_1NavbarEmpleado();
+        //test_2btnEditar();
+        //test_3btnDelete();
+        //test_4numNegativos();
+        //test_5valoresQueNoDeberian();
+        test_6btnActualizar();
     }
 
-    //
+    public static void test_1NavbarEmpleado() {
+        WebDriver driver = new ChromeDriver();
+
+        String baseUrl = "http://localhost:8080/CarritoComprasWeb/Controlador?menu=Listar&accion=Empleado";
+
+        String chromePath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromePath);
+
+        driver.get(baseUrl);
+
+        driver.manage().window().maximize();
+
+        // Obtener el código fuente de la página
+        String pageSource = driver.getPageSource();
+
+        // Imprimir el código fuente en la consola
+        System.out.println(pageSource);
+
+        WebElement rutInput = driver.findElement(By.cssSelector("input[name='txtRut']"));
+        rutInput.sendKeys("12345678-4");
+
+        WebElement nombresInput = driver.findElement(By.cssSelector("input[name='txtNombres']"));
+        nombresInput.sendKeys("John Doe");
+
+        WebElement telefonoInput = driver.findElement(By.cssSelector("input[name='txtTel']"));
+        telefonoInput.sendKeys("912345678");
+
+        WebElement estadoInput = driver.findElement(By.cssSelector("input[name='txtEstado']"));
+        estadoInput.sendKeys("Activo");
+
+        WebElement usuarioInput = driver.findElement(By.cssSelector("input[name='txtUser']"));
+        usuarioInput.sendKeys("johndoe123");
+
+        WebElement addButton = driver.findElement(By.cssSelector("input[type='submit'][value='Agregar']"));
+        addButton.click();
+
+    }
+
+    public static void test_2btnEditar() {
+        WebDriver driver = new ChromeDriver();
+
+        String baseUrl = "http://localhost:8080/CarritoComprasWeb/Controlador?menu=Listar&accion=Empleado";
+
+        String chromePath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromePath);
+
+        driver.get(baseUrl);
+
+        driver.manage().window().maximize();
+
+        // Obtener el código fuente de la página
+        String pageSource = driver.getPageSource();
+
+        // Imprimir el código fuente en la consola
+        System.out.println(pageSource);
+
+        WebElement editarButton = driver.findElement(By.cssSelector("a.btn.btn-warning[href='Controlador?accion=Empleado&menu=Editar&id=1']"));
+        editarButton.click();
+    }
+
+    public static void test_3btnDelete() {
+        WebDriver driver = new ChromeDriver();
+
+        String baseUrl = "http://localhost:8080/CarritoComprasWeb/Controlador?menu=Listar&accion=Empleado";
+
+        String chromePath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromePath);
+
+        driver.get(baseUrl);
+
+        driver.manage().window().maximize();
+
+        // Obtener el código fuente de la página
+        String pageSource = driver.getPageSource();
+
+        // Imprimir el código fuente en la consola
+        System.out.println(pageSource);
+
+        WebElement deleteButton = driver.findElement(By.cssSelector("a.btn.btn-danger[href='Controlador?accion=Empleado&menu=Delete&id=1']"));
+        deleteButton.click();
+    }
+
+    public static void test_4numNegativos() {
+        WebDriver driver = new ChromeDriver();
+
+        String baseUrl = "http://localhost:8080/CarritoComprasWeb/Controlador?menu=Listar&accion=Empleado";
+
+        String chromePath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromePath);
+
+        driver.get(baseUrl);
+
+        driver.manage().window().maximize();
+
+        // Obtener el código fuente de la página
+        String pageSource = driver.getPageSource();
+
+        // Imprimir el código fuente en la consola
+        System.out.println(pageSource);
+
+        WebElement rutInput = driver.findElement(By.cssSelector("input[name='txtRut']"));
+        rutInput.sendKeys("12345674-4");
+
+        WebElement nombresInput = driver.findElement(By.cssSelector("input[name='txtNombres']"));
+        nombresInput.sendKeys("John Dre");
+
+        WebElement telefonoInput = driver.findElement(By.cssSelector("input[name='txtTel']"));
+        telefonoInput.sendKeys("-912335678");
+
+        WebElement estadoInput = driver.findElement(By.cssSelector("input[name='txtEstado']"));
+        estadoInput.sendKeys("Activo");
+
+        WebElement usuarioInput = driver.findElement(By.cssSelector("input[name='txtUser']"));
+        usuarioInput.sendKeys("johndoe123");
+
+        WebElement addButton = driver.findElement(By.cssSelector("input[type='submit'][value='Agregar']"));
+        addButton.click();
+    }
+
+    /*Se introduziran letras y caracteres especiales en rut
+        Se introduciran numeros en nombre
+        Se introduciran letras y caracteres especiales en telefono
+        Se introduciran caracterres especiales y niumeros en estado
+        usuario contendra caracteres especiales
+     */
+    public static void test_5valoresQueNoDeberian() {
+        WebDriver driver = new ChromeDriver();
+
+        String baseUrl = "http://localhost:8080/CarritoComprasWeb/Controlador?menu=Listar&accion=Empleado";
+
+        String chromePath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromePath);
+
+        driver.get(baseUrl);
+
+        driver.manage().window().maximize();
+
+        // Obtener el código fuente de la página
+        String pageSource = driver.getPageSource();
+
+        // Imprimir el código fuente en la consola
+        System.out.println(pageSource);
+
+        WebElement rutInput = driver.findElement(By.cssSelector("input[name='txtRut']"));
+        rutInput.sendKeys("1$345674-4");
+
+        WebElement nombresInput = driver.findElement(By.cssSelector("input[name='txtNombres']"));
+        nombresInput.sendKeys("John Dre 123");
+
+        WebElement telefonoInput = driver.findElement(By.cssSelector("input[name='txtTel']"));
+        telefonoInput.sendKeys("-9123$#%asd5678");
+
+        WebElement estadoInput = driver.findElement(By.cssSelector("input[name='txtEstado']"));
+        estadoInput.sendKeys("Ac##tivo");
+
+        WebElement usuarioInput = driver.findElement(By.cssSelector("input[name='txtUser']"));
+        usuarioInput.sendKeys("-johndoe123");
+
+        WebElement addButton = driver.findElement(By.cssSelector("input[type='submit'][value='Agregar']"));
+        addButton.click();
+    }
+
+    public static void test_6btnActualizar() {
+        WebDriver driver = new ChromeDriver();
+
+        String baseUrl = "http://localhost:8080/CarritoComprasWeb/Controlador?menu=Listar&accion=Empleado";
+
+        String chromePath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromePath);
+
+        driver.get(baseUrl);
+
+        driver.manage().window().maximize();
+
+        // Obtener el código fuente de la página
+        String pageSource = driver.getPageSource();
+
+        // Imprimir el código fuente en la consola
+        System.out.println(pageSource);
+
+        WebElement rutInput = driver.findElement(By.cssSelector("input[name='txtRut']"));
+        rutInput.sendKeys("12345678-4");
+
+        WebElement nombresInput = driver.findElement(By.cssSelector("input[name='txtNombres']"));
+        nombresInput.sendKeys("John Doe");
+
+        WebElement telefonoInput = driver.findElement(By.cssSelector("input[name='txtTel']"));
+        telefonoInput.sendKeys("912345678");
+
+        WebElement estadoInput = driver.findElement(By.cssSelector("input[name='txtEstado']"));
+        estadoInput.sendKeys("Activo");
+
+        WebElement usuarioInput = driver.findElement(By.cssSelector("input[name='txtUser']"));
+        usuarioInput.sendKeys("johndoe123");
+
+        WebElement addButton = driver.findElement(By.cssSelector("input[type='submit'][value='Agregar']"));
+        addButton.click();
+    }
+
+    //------------------------ Productos -------------------------------------------------
     public static void test_1NavbarProductos() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
@@ -409,24 +612,5 @@ public class SeleniumTest1 {
         //Analisis de precio de producto
         //Analisis de stock de producto
         driver.quit();
-    }
-
-    public static void test_1NavbarEmpleado() {
-        WebDriver driver = new ChromeDriver();
-
-        String baseUrl = "http://localhost:8080/CarritoComprasWeb/Controlador?menu=Listar&accion=Empleado";
-
-        String chromePath = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
-
-        driver.get(baseUrl);
-
-        driver.manage().window().maximize();
-
-        // Obtener el código fuente de la página
-        String pageSource = driver.getPageSource();
-
-        // Imprimir el código fuente en la consola
-        System.out.println(pageSource);
     }
 }
